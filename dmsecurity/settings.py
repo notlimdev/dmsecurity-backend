@@ -50,11 +50,18 @@ INSTALLED_APPS = [
     # Librerías externas
     "corsheaders",
     "django_extensions",
+    "rest_framework",
     # Apps del proyecto DMSecurity
     "users",  # Gestión de usuarios, roles y permisos
     "risk",  # Módulo de análisis de riesgo
     "security",  # Gestión de vulnerabilidades y alertas
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",)
+}
+
+AUTH_USER_MODEL = "users.User"
 
 MIDDLEWARE = [
     # 🔹 CORS (debe ir al inicio)
