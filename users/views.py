@@ -10,6 +10,13 @@ class UserViewSet(viewsets.ModelViewSet):
 
     queryset = User.objects.all().order_by("id")
     serializer_class = UserSerializer
-    permission_classes = [
-        permissions.AllowAny
-    ]  # luego lo cambiamos a permisos más seguros
+
+    # 👇 Permisos:
+    # - Solo usuarios autenticados pueden listar o ver
+    # - Solo administradores pueden crear, editar o eliminar
+    def get_permissions(self):
+        if self.action in ["list", "retrieve"]:
+            permission_classes = [permissions.IsAuthenticated]
+        else:
+            permission_classes = [permissions.IsAdminUser]
+        return [permission() for permission in permission_classes]
