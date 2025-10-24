@@ -1,0 +1,8 @@
+{
+  "typeCheckingMode": "basic",
+  "reportMissingTypeStubs": false,
+  "reportIncompatibleMethodOverride": false,
+  "reportAttributeAccessIssue": "none",
+  "reportUnknownMemberType": false,
+  "ignore": ["*/migrations/*"]
+}
