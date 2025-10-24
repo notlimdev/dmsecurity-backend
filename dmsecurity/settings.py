@@ -55,6 +55,8 @@ INSTALLED_APPS = [
     "users",  # Gestión de usuarios, roles y permisos
     "risk",  # Módulo de análisis de riesgo
     "security",  # Gestión de vulnerabilidades y alertas
+    "mitigation",
+    "incident",
 ]
 
 REST_FRAMEWORK = {

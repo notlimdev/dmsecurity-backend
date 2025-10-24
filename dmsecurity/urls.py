@@ -23,4 +23,6 @@ urlpatterns = [
     path("api/", include("users.urls")),
     path("api/risk/", include("risk.urls")),
     path("api/security/", include("security.urls")),
+    path("api/mitigation/", include("mitigation.urls")),
+    path("api/incident/", include("incident.urls")),
 ]
