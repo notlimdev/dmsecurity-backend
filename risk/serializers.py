@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Risk
+from security.models import Security  # 👈 Importa el modelo Security
 
 
 class RiskSerializer(serializers.ModelSerializer):
@@ -12,6 +13,11 @@ class RiskSerializer(serializers.ModelSerializer):
     # Mostrar el nombre del usuario que identificó el riesgo
     identified_by_name = serializers.CharField(
         source="identified_by.username", read_only=True
+    )
+
+    # 👇 Nuevo campo: lista de IDs de controles asociados
+    controls = serializers.PrimaryKeyRelatedField(
+        many=True, queryset=Security.objects.all(), required=False
     )
 
     class Meta:
@@ -27,6 +33,7 @@ class RiskSerializer(serializers.ModelSerializer):
             "status",
             "identified_by",
             "identified_by_name",
+            "controls",  # 👈 Agrégalo aquí también
             "created_at",
             "updated_at",
         ]
