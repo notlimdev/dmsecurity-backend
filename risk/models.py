@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from users.models import User
+from security.models import Security  # 👈 importa el modelo Security
 
 
 class Risk(models.Model):
@@ -46,6 +47,15 @@ class Risk(models.Model):
         verbose_name="Identificado por",
     )
 
+    # 👇 Agrega aquí la relación con controles de seguridad
+    controls = models.ManyToManyField(
+        Security,
+        blank=True,
+        related_name="risks",
+        verbose_name="Controles asociados",
+        help_text="Controles de seguridad que ayudan a mitigar este riesgo",
+    )
+
     # Fechas
     created_at = models.DateTimeField(
         auto_now_add=True, verbose_name="Fecha de creación"
@@ -57,7 +67,7 @@ class Risk(models.Model):
     class Meta:
         verbose_name = "Riesgo"
         verbose_name_plural = "Riesgos"
-        ordering = ["-created_at"]  # Más recientes primero
+        ordering = ["-created_at"]
 
     @property
     def risk_level(self):
@@ -79,4 +89,3 @@ class Risk(models.Model):
 
     def __str__(self):
         return f"{self.title} - {self.risk_level_name} ({self.risk_level})"
-
