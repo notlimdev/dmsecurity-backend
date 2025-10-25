@@ -27,6 +27,7 @@ urlpatterns = [
     path("api/security/", include("security.urls")),
     path("api/mitigation/", include("mitigation.urls")),
     path("api/incident/", include("incident.urls")),
+    path("api/asset/", include("assets.urls")),
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
 ]

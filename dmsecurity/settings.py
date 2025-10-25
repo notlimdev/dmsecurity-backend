@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     "security",  # Gestión de vulnerabilidades y alertas
     "mitigation",
     "incident",
+    "assets",
 ]
 
 REST_FRAMEWORK = {
@@ -79,6 +80,17 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = [
+    "content-type",
+    "authorization",
 ]
 
 ROOT_URLCONF = "dmsecurity.urls"
