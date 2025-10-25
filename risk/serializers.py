@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Risk
 from security.models import Security  # 👈 Importa el modelo Security
+from assets.models import Asset  # 👈 Importa el modelo Asset
 
 
 class RiskSerializer(serializers.ModelSerializer):
@@ -20,6 +21,11 @@ class RiskSerializer(serializers.ModelSerializer):
         many=True, queryset=Security.objects.all(), required=False
     )
 
+    # 👇 Nuevo campo: lista de IDs de activos asociados
+    assets = serializers.PrimaryKeyRelatedField(
+        many=True, queryset=Asset.objects.all(), required=False
+    )
+
     class Meta:
         model = Risk
         fields = [
@@ -34,6 +40,7 @@ class RiskSerializer(serializers.ModelSerializer):
             "identified_by",
             "identified_by_name",
             "controls",  # 👈 Agrégalo aquí también
+            "assets",
             "created_at",
             "updated_at",
         ]

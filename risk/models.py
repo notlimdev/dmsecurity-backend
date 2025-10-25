@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from users.models import User
 from security.models import Security  # 👈 importa el modelo Security
+from assets.models import Asset  # 👈 nuevo import
 
 
 class Risk(models.Model):
@@ -54,6 +55,14 @@ class Risk(models.Model):
         related_name="risks",
         verbose_name="Controles asociados",
         help_text="Controles de seguridad que ayudan a mitigar este riesgo",
+    )
+    # 👇 Relación con activos (assets)
+    assets = models.ManyToManyField(
+        Asset,
+        blank=True,
+        related_name="risks",
+        verbose_name="Activos afectados",
+        help_text="Activos de la organización que están relacionados con este riesgo",
     )
 
     # Fechas
