@@ -12,3 +12,4 @@ dependencies:
       - django-extensions==3.2.3
       - django-stubs==5.0.2
       - djangorestframework-simplejwt==5.3.1
+      - openai==2.6.1
